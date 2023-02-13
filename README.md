@@ -6,7 +6,7 @@ original prefab:
 
 ## Added features:
 - toggable jump while under water
-- turn underwater effects om while under water
+- turn underwater effects on while under water
 - turn outside pool fx off while under water
 
 
