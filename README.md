@@ -8,3 +8,8 @@ original prefab:
 - toggable jump while under water
 - turn underwater effects om while under water
 - turn outside pool fx off while under water
+
+
+## Install instructions
+1. Import SwimSystem 2.2.0
+2. Replace scripts with the ones in this Repo.
