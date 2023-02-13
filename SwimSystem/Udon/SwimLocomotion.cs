@@ -134,10 +134,10 @@ This mode is for the most dedicated players with full-body setup")]
         private int emulatedSwimLockDelay;
         private int realSwimLockDelay;
 
-        [Header("Outside Objects")]
+        [Header("Added Fields")]
         public bool isJumpEnabled = false;
-        public GameObject OutsideShader;
-        public GameObject InsideShader;
+        public GameObject outsideCaustics;
+        public GameObject underwaterShader;
 
         void Start()
         {
@@ -161,9 +161,10 @@ This mode is for the most dedicated players with full-body setup")]
 
         void Update()
         {
-            
-            InsideShader.SetActive(isUnderwater);
-            OutsideShader.SetActive(!isUnderwater);
+            if (VRC.SDKBase.Utilities.IsValid(underwaterShader))
+                underwaterShader.SetActive(isUnderwater);
+            if (VRC.SDKBase.Utilities.IsValid(outsideCaustics))
+                outsideCaustics.SetActive(!isUnderwater);
             
             if(Networking.LocalPlayer == null) return;
             if(you == null) // Trying to ward off nasty edge-case bugs found with very small probability
