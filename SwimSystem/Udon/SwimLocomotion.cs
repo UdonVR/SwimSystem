@@ -41,6 +41,7 @@ OnUnderwaterExit")]
 
         [Tooltip("Sound effect when player jumps into water")]
         [SerializeField] private AudioClip bodySplashClip;
+        [SerializeField] private bool useBodySplashClip = true;
 
         [Tooltip("Sound effect when player hands splash into water (VR only)")]
         [SerializeField] private AudioClip handSplashClip;
@@ -208,7 +209,8 @@ This mode is for the most dedicated players with full-body setup")]
                     locomotion.Immobilize(true);
 
                     Vector3 pVel = locomotion.GetVelocity();
-                    PlayWaterSplash(bodySplashClip, Vector3.Scale(pVel, new Vector3(0.5f, 1.0f, 0.5f)), 1.0f);
+                    if (useBodySplashClip && bodySplashClip != null)
+                        PlayWaterSplash(bodySplashClip, Vector3.Scale(pVel, new Vector3(0.5f, 1.0f, 0.5f)), 1.0f);
                     locomotion.SetVelocity(pVel * 0.75f);
 
                     diveTime = Time.time;
