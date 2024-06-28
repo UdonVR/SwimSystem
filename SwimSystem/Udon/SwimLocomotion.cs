@@ -334,7 +334,11 @@ CheckSphere: {locomotion.IsOnGround()}, {locomotion.IsOnFloor(true)} / RatioOffW
                 // If stuck, and attempting to move by either hand swim, or via movement stick by checking if not landed on the ground
                 if((GetHandSwimInput().sqrMagnitude > 0.001f) || (locomotion.GetMoveVector().sqrMagnitude > 0.001f && isUnderwater)) {
 
-                    you.TeleportTo(you.GetPosition() + Vector3.up * 0.004f, you.GetRotation(), VRC_SceneDescriptor.SpawnOrientation.Default, true);
+                    #if UNITY_EDITOR
+                        you.TeleportTo(you.GetPosition() + Vector3.up * 0.004f, you.GetRotation(), VRC_SceneDescriptor.SpawnOrientation.Default, true);
+                    #else
+                        you.TeleportTo(you.GetPosition() + Vector3.up * 0.004f, you.GetTrackingData(VRCPlayerApi.TrackingDataType.AvatarRoot).rotation, VRC_SceneDescriptor.SpawnOrientation.Default, true);
+                    #endif
                     locomotion.SetVelocity(Vector3.Scale(locomotion.GetVelocity(), new Vector3(1f, 0f, 1f)));
                 }
             }
